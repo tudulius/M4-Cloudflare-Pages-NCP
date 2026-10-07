@@ -2,7 +2,7 @@
 # echo "# M4-Cloudflare-Pages-NCP" >> README.md
 # git init
 git add .
-git commit -m "first commit"
+git commit -m "M4-Cloudflare-Pages-NCP"
 # git branch -M main
 # git remote add origin https://github.com/tudulius/M4-Cloudflare-Pages-NCP.git
 git push -u origin main
