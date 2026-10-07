@@ -3,191 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAVER CLOUD 기술자격증 문제은행</title>
+    <title>클라우드 인증 시험 문제은행</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #03C75A; /* 네이버 시그니처 그린 */
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        p.subtitle {
-            text-align: center;
-            color: #6c757d;
-            margin-bottom: 40px;
-        }
-        .level-section {
-            margin-bottom: 40px;
-        }
-        .level-title {
-            font-size: 1.5rem;
-            color: #343a40;
-            border-bottom: 3px solid #e9ecef;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .level-title span {
-            font-size: 0.9rem;
-            background-color: #e9ecef;
-            color: #495057;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-left: 15px;
-            font-weight: normal;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #e9ecef;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border-top: 4px solid #ced4da;
-        }
-        .card.associate { border-top-color: #20c997; }
-        .card.professional { border-top-color: #339af0; }
-        .card.expert { border-top-color: #f03e3e; }
+        body { font-family: sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        /* 로그인 화면 스타일 */
+        #login-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f8f9fa; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.25rem;
-            color: #212529;
-            margin-bottom: 16px;
-        }
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .card li {
-            margin-bottom: 12px;
-        }
-        .card a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-radius: 6px;
-            background-color: #f8f9fa;
-            transition: background-color 0.2s;
-        }
-        .card a::before {
-            content: "📝";
-            margin-right: 8px;
-            font-size: 1.1em;
-        }
-        .card a:hover {
-            background-color: #e2e6ea;
-            text-decoration: none;
-        }
-        .empty-note {
-            color: #868e96;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: #f1f3f5;
-            border-radius: 6px;
-        }
-        .empty-note::before {
-            content: "⏳";
-            margin-right: 8px;
-            font-size: 1.1em;
-        }
+        #login-screen input { padding: 10px; font-size: 16px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        #login-screen button { padding: 10px 20px; font-size: 16px; background-color: #03C75A; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        
+        /* 메인 콘텐츠 스타일 (초기에는 숨김) */
+        #main-content { display: none; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { text-align: center; color: #03C75A; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .card h2 { margin-top: 0; border-bottom: 2px solid #f1f3f5; padding-bottom: 12px; }
+        .card ul { list-style: none; padding: 0; margin: 0; }
+        .card a { text-decoration: none; color: #007bff; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h1>NAVER CLOUD 기술자격증 학습 센터</h1>
-    <p class="subtitle">Cloudflare Pages & Zero Trust 보안 적용</p>
-
-    <!-- 1. Associate 레벨 -->
-    <div class="level-section">
-        <h2 class="level-title">Associate <span>입문 / 기초</span></h2>
-        <div class="grid">
-            <div class="card associate">
-                <h2>NCA</h2>
-                <ul>
-                    <li class="empty-note">자료 준비 중</li>
-                </ul>
-            </div>
-        </div>
+    <!-- 암호 입력 화면 -->
+    <div id="login-screen">
+        <h2 style="color:#03C75A;">🔒 관리자 인증</h2>
+        <input type="password" id="pw-input" placeholder="비밀번호 입력" onkeypress="if(event.keyCode==13) checkPw();">
+        <button onclick="checkPw()">입장하기</button>
     </div>
 
-    <!-- 2. Professional 레벨 -->
-    <div class="level-section">
-        <h2 class="level-title">Professional <span>실무 / 심화</span></h2>
+    <!-- 메인 화면 (암호 통과 시 보임) -->
+    <div id="main-content">
+        <h1>📚 클라우드 인증 시험 학습 센터</h1>
         <div class="grid">
-            <div class="card professional">
-                <h2>NCP</h2>
-                <ul>
-                    <li class="empty-note">자료 준비 중</li>
-                </ul>
-            </div>
-            
-            <div class="card professional">
-                <h2>NCP-AI</h2>
-                <ul>
-                    <li><a href="NCP-AI/ncp-ai.html">NCP AI 문제풀이</a></li>
-                </ul>
-            </div>
-
-            <div class="card professional">
-                <h2>NCP-SEC</h2>
-                <ul>
-                    <li class="empty-note">자료 준비 중</li>
-                </ul>
-            </div>
-
-            <div class="card professional">
-                <h2>NCP-xOps</h2>
-                <ul>
-                    <li class="empty-note">자료 준비 중</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Expert 레벨 -->
-    <div class="level-section">
-        <h2 class="level-title">Expert <span>전문 / 마스터</span></h2>
-        <div class="grid">
-            <div class="card expert">
-                <h2>NCE</h2>
-                <ul>
-                    <li class="empty-note">자료 준비 중</li>
-                </ul>
-            </div>
-
-            <div class="card expert">
+            <div class="card">
                 <h2>NCE-AI</h2>
-                <ul>
-                    <li><a href="NCE-AI/nce-ai.html">NCE AI 문제풀이</a></li>
-                </ul>
+                <ul><li><a href="NCE-AI/nce-ai.html">NCE AI 문제풀이</a></li></ul>
+            </div>
+            <div class="card">
+                <h2>NCP-AI</h2>
+                <ul><li><a href="NCP-AI/ncp-ai.html">NCP AI 문제풀이</a></li></ul>
             </div>
         </div>
     </div>
 
+    <script>
+        function checkPw() {
+            var pw = document.getElementById("pw-input").value;
+            // 이곳에 원하는 비밀번호를 설정하세요
+            if (pw === "ncloud123") { 
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            } else {
+                alert("비밀번호가 일치하지 않습니다.");
+            }
+        }
+    </script>
 </body>
 </html>
